@@ -1,45 +1,51 @@
 // Write your code here.
-import './index.css'
 import {Component} from 'react'
+
+import './index.css'
 
 class LettersCalculator extends Component {
   state = {
-    inputText: '',
+    inputPhrase: '',
   }
 
-  onChangeLettersCount = event => {
-    const newText = event.target.value
-    this.setState({inputText: newText})
+  onChangeInputPhrase = event => {
+    const {value} = event.target
+
+    this.setState({inputPhrase: value})
   }
 
   render() {
-    const headingText = 'Calculate the Letters you enter'
-    const imageURL =
-      'https://assets.ccbp.in/frontend/react-js/stop-watch-with-calculator-img.png'
-    const {inputText} = this.state
-    const count = inputText.length
+    const {inputPhrase} = this.state
 
     return (
       <div className="app-container">
-        <div className="container">
-          <div className="calculate-container">
-            <h1 className="heading">{headingText}</h1>
-            <label className="label-text" htmlFor="userInput">
-              Enter the phrase
-            </label>
-            <input
-              className="user-input"
-              type="text"
-              placeholder="Enter the phrase"
-              id="userInput"
-              onChange={this.onChangeLettersCount}
-            />
-            <p className="count-box">No.of letters: {count}</p>
+        <div className="letters-calculator-container">
+          <div className="calculator-container">
+            <h1 className="heading">Calculate the Letters you enter</h1>
+            <div className="input-phrase-container">
+              <label className="label" htmlFor="phraseText">
+                Enter the phrase
+              </label>
+              <input
+                className="letters-input"
+                id="phraseText"
+                onChange={this.onChangeInputPhrase}
+                placeholder="Enter the phrase"
+                type="text"
+                value={inputPhrase}
+              />
+            </div>
+            <p className="letters-count">No.of letters: {inputPhrase.length}</p>
           </div>
-          <img className="image" src={imageURL} alt="calImage" />
+          <img
+            alt="letters calculator"
+            className="letters-calculator-image"
+            src="https://assets.ccbp.in/frontend/react-js/stop-watch-with-calculator-img.png"
+          />
         </div>
       </div>
     )
   }
 }
+
 export default LettersCalculator
